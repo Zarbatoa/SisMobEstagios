@@ -1,6 +1,8 @@
 # sistema_mobile_estagios
 
-A new Flutter project.
+A new Flutter project, integrating the API created in python previously.
+
+A project inspired in our TCS project of SENAC.
 
 ## Getting Started
 
