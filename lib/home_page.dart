@@ -15,43 +15,41 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Sistema Controle de Estágios'),
         backgroundColor: Colors.blue[900],
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(top: 20),
-                    height: 180,
-                    child: Image.asset('images/logo_sce.png', fit: BoxFit.fitHeight)
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  imagePadding('images/sobre_logo.png', 'Sobre'),
-                  imagePadding('images/estagiario_logo.png', 'Estagiário'),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  imagePadding('images/curso_logo.png', 'Curso'),
-                  imagePadding('images/empresa_logo.png', 'Empresa')
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  imagePadding('images/instituicao_ensino_logo.png', 'Instituição'),
-                  imagePadding('images/estagio_logo.png', 'Estágio')
-                ]
-              )
-            ]
-          )
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  height: 180,
+                  child: Image.asset('images/logo_sce.png', fit: BoxFit.fitHeight)
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                imagePadding('images/sobre_logo.png', 'Sobre'),
+                imagePadding('images/instituicao_ensino_logo.png', 'Instituição')
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                imagePadding('images/curso_logo.png', 'Curso'),
+                imagePadding('images/estagiario_logo.png', 'Estagiário'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                imagePadding('images/empresa_logo.png', 'Empresa'),
+                imagePadding('images/estagio_logo.png', 'Estágio')
+              ]
+            )
+          ]
         )
       ),
     );
