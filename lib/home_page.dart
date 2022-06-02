@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sistema_mobile_estagios/instituicao_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 imagePadding('images/sobre_logo.png', 'Sobre'),
-                imagePadding('images/instituicao_ensino_logo.png', 'Instituição')
+                imageGestureDetector('images/instituicao_ensino_logo.png', 'Instituição', context, const InstituicaoPage())
               ],
             ),
             Row(
@@ -67,7 +68,12 @@ class _HomePageState extends State<HomePage> {
               );
           });
         },
-        child: Image.asset(asset),
+        child: Column(
+          children: [
+            Image.asset(asset),
+            Text(description, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),)
+          ]
+        ),
       )
     );
   }
