@@ -101,7 +101,7 @@ class _EstagiarioPageState extends State<EstagiarioPage> {
               ),
             ),
             ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               // Let the ListView know how many items it needs to build.
               itemCount: items.length,

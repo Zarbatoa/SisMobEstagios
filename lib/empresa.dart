@@ -18,7 +18,7 @@ class EmpresaPage extends StatefulWidget {
 class _EmpresaPageState extends State<EmpresaPage> {
   List<ListItem> items = [];
 
-  void getInstituicaoApi() async {
+  void getEmpresaApi() async {
     var uri = Uri.parse('http://10.0.2.2:8000/unidadeConcedente');
     var response = await http.get(
       uri,
@@ -80,7 +80,7 @@ class _EmpresaPageState extends State<EmpresaPage> {
               ),
             ),
             ElevatedButton(
-              onPressed: getInstituicaoApi, 
+              onPressed: getEmpresaApi, 
               child: const Text('LISTAR'),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color?>(constantes.darkBlueTheme),
@@ -100,7 +100,7 @@ class _EmpresaPageState extends State<EmpresaPage> {
               ),
             ),
             ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               // Let the ListView know how many items it needs to build.
               itemCount: items.length,

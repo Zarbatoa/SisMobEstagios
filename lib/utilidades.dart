@@ -19,6 +19,19 @@ String resgatarNomeCurso(LinkedHashMap<String,dynamic> curso){
   return cursoFormatado;
 }
 
+String resgatarNomeEstagiario(LinkedHashMap<String,dynamic> estagiario){
+  String estagiarioFormatado = estagiario['nome'];
+  estagiarioFormatado = const Utf8Decoder().convert(estagiarioFormatado.codeUnits);
+  return estagiarioFormatado;
+}
+
+String resgatarRazaoSocialEmpresa(LinkedHashMap<String,dynamic> empresa){
+  String razaoSocialFormatado = empresa['razao_social'];
+  razaoSocialFormatado = const Utf8Decoder().convert(razaoSocialFormatado.codeUnits);
+  return razaoSocialFormatado;
+}
+
+
 String capsFirstLetter(String word){
   return '${word[0].toUpperCase()}${word.substring(1)}';
 }

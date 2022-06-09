@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sistema_mobile_estagios/curso.dart';
 import 'package:sistema_mobile_estagios/empresa.dart';
 import 'package:sistema_mobile_estagios/estagiario.dart';
+import 'package:sistema_mobile_estagios/estagio.dart';
 import 'package:sistema_mobile_estagios/instituicao_page.dart';
 import 'package:sistema_mobile_estagios/constantes.dart' as constantes;
 
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 imageGestureDetector('images/empresa_logo.png', 'Empresa', context, const EmpresaPage()),
-                imagePadding('images/estagio_logo.png', 'Estágio')
+                imageGestureDetector('images/estagio_logo.png', 'Estágio', context, const EstagioPage())
               ]
             )
           ]

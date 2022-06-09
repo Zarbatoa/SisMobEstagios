@@ -66,7 +66,7 @@ class _CursoPageState extends State<CursoPage> {
                   child: Icon(Icons.all_inbox,size: 56),
                   padding: EdgeInsets.only(top: 10, left: 10),
                 ),
-                myPadding('Sobre Curso:', EdgeInsets.only(top: 20, left: 20))
+                myPadding('Sobre Curso:', const EdgeInsets.only(top: 20, left: 20))
               ],
             ),
             myPadding('Aqui será manipulado um curso de uma instituição.', const EdgeInsets.all(25)),
@@ -99,7 +99,7 @@ class _CursoPageState extends State<CursoPage> {
               ),
             ),
             ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               // Let the ListView know how many items it needs to build.
               itemCount: items.length,
