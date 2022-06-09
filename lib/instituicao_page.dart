@@ -73,10 +73,10 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
                   child: Icon(Icons.school,size: 56),
                   padding: EdgeInsets.only(top: 10, left: 10),
                 ),
-                myPadding('Sobre Instituição de Ensino:')
+                myPadding('Sobre Instituição de Ensino:', const EdgeInsets.only(top: 20, left: 20))
               ],
             ),
-            myPadding('As instituições de ensino são importantes entes sociais (ou instituições sociais) que atuam na promoção da educação de crianças, jovens e adultos.'),
+            myPadding('As instituições de ensino são importantes entes sociais (ou instituições sociais) que atuam na promoção da educação de crianças, jovens e adultos.', const EdgeInsets.all(25)),
             ElevatedButton(
               onPressed: (){}, 
               child: const Text('CADASTRAR'),
@@ -203,9 +203,9 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
     );
   }
 
-  Widget myPadding(String texto) {
+  Widget myPadding(String texto, EdgeInsetsGeometry padding) {
     return Padding(
-      padding: const EdgeInsets.all(25),
+      padding: padding, //const EdgeInsets.all(25),
       child: Text(
         texto,
         textAlign: TextAlign.justify,

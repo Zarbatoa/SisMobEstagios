@@ -7,19 +7,19 @@ import 'package:http/http.dart' as http;
 import 'package:sistema_mobile_estagios/utilidades.dart';
 import 'package:sistema_mobile_estagios/constantes.dart' as constantes;
 
-class EstagiarioPage extends StatefulWidget {
+class EmpresaPage extends StatefulWidget {
   
-  const EstagiarioPage({ Key? key }) : super(key: key);
+  const EmpresaPage({ Key? key }) : super(key: key);
 
   @override
-  State<EstagiarioPage> createState() => _EstagiarioPageState();
+  State<EmpresaPage> createState() => _EmpresaPageState();
 }
 
-class _EstagiarioPageState extends State<EstagiarioPage> {
+class _EmpresaPageState extends State<EmpresaPage> {
   List<ListItem> items = [];
 
-  void getEstagiarioApi() async {
-    var uri = Uri.parse('http://10.0.2.2:8000/estagiario');
+  void getInstituicaoApi() async {
+    var uri = Uri.parse('http://10.0.2.2:8000/unidadeConcedente');
     var response = await http.get(
       uri,
       headers: {
@@ -34,18 +34,16 @@ class _EstagiarioPageState extends State<EstagiarioPage> {
       listaJsons.add(LinkedHashMap.from(d));
     }
 
-    int qtdAtributos = 15;
+    int qtdAtributos = 12;
 
     setState(() {
       items = List<ListItem>.generate(listaJsons.length*qtdAtributos, 
         (i) => i % qtdAtributos == 0 ? 
-        HeadingItem('Estagiário ${i~/qtdAtributos + 1}') : 
+        HeadingItem('Empresa ${i~/qtdAtributos + 1}') : 
         MessageItem(capsFirstLetter(listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)),
-          (listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos) == 'curso') ?
-          resgatarNomeCurso(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)]) :
-          (listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos) == 'endereco') ?
-          formatarEndereco(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)]):
-          const Utf8Decoder().convert(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)].toString().codeUnits)
+          listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos) != 'endereco' ?
+          const Utf8Decoder().convert( listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)].toString().codeUnits ) :
+          formatarEndereco(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)])
         )
       );
     });
@@ -55,7 +53,7 @@ class _EstagiarioPageState extends State<EstagiarioPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Estagiário'),
+        title: const Text('Empresa'),
         backgroundColor: constantes.lightBlueTheme,
       ),
       body: SingleChildScrollView(
@@ -65,13 +63,14 @@ class _EstagiarioPageState extends State<EstagiarioPage> {
             Row(
               children: [
                 const Padding(
-                  child: Icon(Icons.supervised_user_circle_outlined,size: 56),
+                  child: Icon(Icons.business_center_sharp,size: 56),
                   padding: EdgeInsets.only(top: 10, left: 10),
                 ),
-                myPadding('Sobre Estagiário:', const EdgeInsets.only(top: 20, left: 20))
+                myPadding('Sobre Empresa:', const EdgeInsets.only(top: 20, left: 20))
               ],
             ),
-            myPadding('O estagiário é o estudante ou universitário que almeja ter sua primeira oportunidade no mercado de trabalho ou exercer de forma íntegra o que está aprendendo em seu curso.',const EdgeInsets.all(25)),
+            myPadding('É toda organização econômica civil, ou empresarial, instituída para a exploração de um determinado ramo de negócio.', const EdgeInsets.all(25)
+            ),
             ElevatedButton(
               onPressed: (){}, 
               child: const Text('CADASTRAR'),
@@ -81,7 +80,7 @@ class _EstagiarioPageState extends State<EstagiarioPage> {
               ),
             ),
             ElevatedButton(
-              onPressed: getEstagiarioApi, 
+              onPressed: getInstituicaoApi, 
               child: const Text('LISTAR'),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color?>(constantes.darkBlueTheme),
