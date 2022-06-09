@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sistema_mobile_estagios/curso.dart';
-import 'package:sistema_mobile_estagios/empresa.dart';
-import 'package:sistema_mobile_estagios/estagiario.dart';
-import 'package:sistema_mobile_estagios/estagio.dart';
+import 'package:sistema_mobile_estagios/curso_page.dart';
+import 'package:sistema_mobile_estagios/empresa_page.dart';
+import 'package:sistema_mobile_estagios/estagiario_page.dart';
+import 'package:sistema_mobile_estagios/estagio_page.dart';
 import 'package:sistema_mobile_estagios/instituicao_page.dart';
 import 'package:sistema_mobile_estagios/constantes.dart' as constantes;
+import 'package:sistema_mobile_estagios/sobre_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                imagePadding('images/sobre_logo.png', 'Sobre'),
+                imageGestureDetector('images/sobre_logo.png', 'Sobre', context, const SobrePage()),
                 imageGestureDetector('images/instituicao_ensino_logo.png', 'Instituição', context, const InstituicaoPage())
               ],
             ),
