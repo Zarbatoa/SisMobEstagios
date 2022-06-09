@@ -13,6 +13,12 @@ String resgatarRazaoSocialInstituicao(LinkedHashMap<String,dynamic> instituicao)
   return razaoSocialFormatado;
 }
 
+String resgatarNomeCurso(LinkedHashMap<String,dynamic> curso){
+  String cursoFormatado = curso['nome'];
+  cursoFormatado = const Utf8Decoder().convert(cursoFormatado.codeUnits);
+  return cursoFormatado;
+}
+
 String capsFirstLetter(String word){
   return '${word[0].toUpperCase()}${word.substring(1)}';
 }

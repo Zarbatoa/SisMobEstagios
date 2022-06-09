@@ -18,7 +18,7 @@ class CursoPage extends StatefulWidget {
 class _CursoPageState extends State<CursoPage> {
   List<ListItem> items = [];
 
-  void get_curso_api() async {
+  void getCursoApi() async {
     var uri = Uri.parse('http://10.0.2.2:8000/curso');
     var response = await http.get(
       uri,
@@ -39,8 +39,8 @@ class _CursoPageState extends State<CursoPage> {
     setState(() {
       items = List<ListItem>.generate(listaJsons.length*qtdAtributos, 
         (i) => i % qtdAtributos == 0 ? 
-        HeadingItem('Curso ${i~/qtdAtributos}') : 
-        MessageItem(capsFirstLetter(listaJsons[i~/9].keys.elementAt(i%qtdAtributos)),
+        HeadingItem('Curso ${i~/qtdAtributos + 1}') : 
+        MessageItem(capsFirstLetter(listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)),
           listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos) != 'instituicaoEnsino' ?
           const Utf8Decoder().convert( listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)].toString().codeUnits ) :
           resgatarRazaoSocialInstituicao(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)])
@@ -79,7 +79,7 @@ class _CursoPageState extends State<CursoPage> {
               ),
             ),
             ElevatedButton(
-              onPressed: get_curso_api, 
+              onPressed: getCursoApi, 
               child: const Text('LISTAR'),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color?>(constantes.darkBlueTheme),

@@ -7,26 +7,19 @@ import 'package:http/http.dart' as http;
 import 'package:sistema_mobile_estagios/utilidades.dart';
 import 'package:sistema_mobile_estagios/constantes.dart' as constantes;
 
-class InstituicaoPage extends StatefulWidget {
+class EstagiarioPage extends StatefulWidget {
   
-  const InstituicaoPage({ Key? key }) : super(key: key);
+  const EstagiarioPage({ Key? key }) : super(key: key);
 
   @override
-  State<InstituicaoPage> createState() => _InstituicaoPageState();
+  State<EstagiarioPage> createState() => _EstagiarioPageState();
 }
 
-class _InstituicaoPageState extends State<InstituicaoPage> {
+class _EstagiarioPageState extends State<EstagiarioPage> {
   List<ListItem> items = [];
-  // bool? _check = false;
-  // String? _checkRadio = '';
-  // bool valueSwitch = false;
 
-  // double _valueSlider = 0;
-  // String _labelSlider = '0';
-
-
-  void getInstituicaoApi() async {
-    var uri = Uri.parse('http://10.0.2.2:8000/instituicaoEnsino');
+  void getEstagiarioApi() async {
+    var uri = Uri.parse('http://10.0.2.2:8000/estagiario');
     var response = await http.get(
       uri,
       headers: {
@@ -41,16 +34,18 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
       listaJsons.add(LinkedHashMap.from(d));
     }
 
-    int qtdAtributos = 9;
+    int qtdAtributos = 15;
 
     setState(() {
       items = List<ListItem>.generate(listaJsons.length*qtdAtributos, 
         (i) => i % qtdAtributos == 0 ? 
-        HeadingItem('Instituição ${i~/qtdAtributos + 1}') : 
+        HeadingItem('Estagiário ${i~/qtdAtributos + 1}') : 
         MessageItem(capsFirstLetter(listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)),
-          listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos) != 'endereco' ?
-          const Utf8Decoder().convert( listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)].toString().codeUnits ) :
-          formatarEndereco(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)])
+          (listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos) == 'curso') ?
+          resgatarNomeCurso(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)]) :
+          (listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos) == 'endereco') ?
+          formatarEndereco(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)]):
+          const Utf8Decoder().convert(listaJsons[i~/qtdAtributos][listaJsons[i~/qtdAtributos].keys.elementAt(i%qtdAtributos)].toString().codeUnits)
         )
       );
     });
@@ -60,7 +55,7 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Instituição de Ensino'),
+        title: const Text('Estagiário'),
         backgroundColor: constantes.lightBlueTheme,
       ),
       body: SingleChildScrollView(
@@ -70,13 +65,13 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
             Row(
               children: [
                 const Padding(
-                  child: Icon(Icons.school,size: 56),
+                  child: Icon(Icons.supervised_user_circle_outlined,size: 56),
                   padding: EdgeInsets.only(top: 10, left: 10),
                 ),
-                myPadding('Sobre Instituição de Ensino:')
+                myPadding('Sobre Estagiário:')
               ],
             ),
-            myPadding('As instituições de ensino são importantes entes sociais (ou instituições sociais) que atuam na promoção da educação de crianças, jovens e adultos.'),
+            myPadding('O estagiário é o estudante ou universitário que almeja ter sua primeira oportunidade no mercado de trabalho ou exercer de forma íntegra o que está aprendendo em seu curso.'),
             ElevatedButton(
               onPressed: (){}, 
               child: const Text('CADASTRAR'),
@@ -86,7 +81,7 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
               ),
             ),
             ElevatedButton(
-              onPressed: getInstituicaoApi, 
+              onPressed: getEstagiarioApi, 
               child: const Text('LISTAR'),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color?>(constantes.darkBlueTheme),
@@ -121,82 +116,6 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
                 );
               },
             ),
-            // testes com inputs
-            // CheckboxListTile(
-            //   activeColor: Colors.green,
-            //   checkColor: Colors.black,
-            //   selected: false,
-            //   secondary: const Icon(Icons.add_box),
-            //   title: const Text('CheckBox'),
-            //   subtitle: const Text('SubTitle'),
-            //   value: _check,
-            //   onChanged: (bool? valor) {
-            //     setState(() {
-            //     _check = valor;
-            //     });
-            //   }
-            // ),
-            // RadioListTile(
-            //   secondary: Icon(Icons.woman),
-            //   title: const Text('Feminio'),
-            //   value: 'f',
-            //   groupValue: _checkRadio,
-            //   onChanged: (String? valor){
-            //     setState(() {
-            //       _checkRadio = valor;
-            //     });
-            //   }
-            // ),
-            // RadioListTile(
-            //   secondary: Icon(Icons.man),
-            //   title: const Text('Masculino'),
-            //   subtitle: const Text('Escolha esta opção!'),
-            //   value: 'm',
-            //   groupValue: _checkRadio,
-            //   onChanged: (String? valor){
-            //     setState(() {
-            //       _checkRadio = valor;
-            //     });
-            //   }
-            // ),
-            // SwitchListTile(
-            //   value: valueSwitch,
-            //   title: const Text('Switch'),
-            //   secondary: const Icon(Icons.bike_scooter_rounded),
-            //   onChanged: (bool value) {
-            //     setState(() {
-            //       valueSwitch = value;
-            //     });
-            //   }
-            // ),
-            // Slider(
-            //   value: _valueSlider,
-            //   min: 0,
-            //   max: 10,
-            //   divisions: 100,
-            //   label: _labelSlider,
-            //   activeColor: Colors.red,
-            //   inactiveColor: Colors.green,
-            //   onChanged: (double v){
-            //     setState(() {
-            //       _valueSlider = v;
-            //       _labelSlider = v.toStringAsFixed(1); 
-            //     });
-            //   }
-            // ),
-            // myPadding('Teste botões'),
-            // ElevatedButton(
-            //   onPressed: (){},
-            //   child: const Text('Botão Elevated')
-            // ),
-            // OutlinedButton(
-            //   onPressed: (){}, 
-            //   child: const Text('Botão Outlined')
-            // ),
-            // TextButton(
-            //   onPressed: (){},
-            //   child: const Text('Botão Text')
-            // )
           ],
         ),
       )
