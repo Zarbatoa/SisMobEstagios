@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sistema_mobile_estagios/utilidades.dart';
+import 'package:sistema_mobile_estagios/constantes.dart' as constantes;
 
 class InstituicaoPage extends StatefulWidget {
   
@@ -40,18 +41,16 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
       listaJsons.add(LinkedHashMap.from(d));
     }
 
-    for (var k in listaJsons) {
-      print(Utf8Decoder().convert(k.toString().codeUnits));
-    }
-
     setState(() {
       items = List<ListItem>.generate(listaJsons.length*9, 
         (i) => i % 9 == 0 ? 
         HeadingItem('Instituicao ${i~/9}') : 
         MessageItem(listaJsons[i~/9].keys.elementAt(i%9),
           listaJsons[i~/9].keys.elementAt(i%9) != 'endereco' ?
-          '${Utf8Decoder().convert( listaJsons[i~/9][listaJsons[i~/9].keys.elementAt(i%9)].toString().codeUnits )}' :
-          Utilidades.formatarEndereco(listaJsons[i~/9][listaJsons[i~/9].keys.elementAt(i%9)])));
+          const Utf8Decoder().convert( listaJsons[i~/9][listaJsons[i~/9].keys.elementAt(i%9)].toString().codeUnits ) :
+          formatarEndereco(listaJsons[i~/9][listaJsons[i~/9].keys.elementAt(i%9)])
+        )
+      );
     });
   }
 
@@ -60,10 +59,10 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Instituição de Ensino'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: constantes.lightBlueTheme,
       ),
       body: SingleChildScrollView(
-        physics: ScrollPhysics(),
+        physics: const ScrollPhysics(),
         child: Column(
           children: [
             Row(
@@ -80,12 +79,17 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
               onPressed: (){}, 
               child: const Text('CADASTRAR'),
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color?>(Colors.blue[900]),
+                backgroundColor: MaterialStateProperty.all<Color?>(constantes.darkBlueTheme),
+                fixedSize: MaterialStateProperty.all(const Size(150, 35))
               ),
             ),
             ElevatedButton(
               onPressed: get_instituicao_api, 
-              child: const Text('LISTAR')
+              child: const Text('LISTAR'),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color?>(constantes.darkBlueTheme),
+                fixedSize: MaterialStateProperty.all(const Size(150, 35))
+              ),
             ),
             ElevatedButton(
               onPressed: (){
@@ -93,7 +97,11 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
                   items = [];
                 });
               }, 
-              child: const Text('LIMPAR')
+              child: const Text('LIMPAR'),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color?>(constantes.darkBlueTheme),
+                fixedSize: MaterialStateProperty.all(const Size(150, 35))
+              ),
             ),
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
@@ -207,6 +215,7 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
     );
   }
 }
+
 
 
 /// The base class for the different types of items the list can contain.

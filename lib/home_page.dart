@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sistema_mobile_estagios/instituicao_page.dart';
+import 'package:sistema_mobile_estagios/constantes.dart' as constantes;
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sistema Controle de Estágios'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: constantes.lightBlueTheme,
       ),
       body: SingleChildScrollView(
         child: Column(
