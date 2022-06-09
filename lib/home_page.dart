@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sistema_mobile_estagios/curso.dart';
 import 'package:sistema_mobile_estagios/instituicao_page.dart';
 import 'package:sistema_mobile_estagios/constantes.dart' as constantes;
 
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                imagePadding('images/curso_logo.png', 'Curso'),
+                imageGestureDetector('images/curso_logo.png', 'Curso', context, const CursoPage()),
                 imagePadding('images/estagiario_logo.png', 'Estagiário'),
               ],
             ),
