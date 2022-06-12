@@ -68,6 +68,7 @@ flutter:
     - images/logo_sce.png
     - images/sobre_logo.png
     - images/top_pagina_sobre.png
+    - images/meio_pagina_sobre.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
