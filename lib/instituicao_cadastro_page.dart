@@ -503,6 +503,7 @@ class _InstituicaoCadastroPageState extends State<InstituicaoCadastroPage> {
                       // Process data.
                       _formKey.currentState!.save();
                       postInstituicaoApi();
+                      Navigator.pop(context);
                     }
                   },
                   child: const Text('CADASTRAR'),

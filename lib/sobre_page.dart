@@ -27,9 +27,9 @@ class SobrePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            myPaddingBold('Sobre o Sistema:', const EdgeInsets.all(50)),
+            myPaddingBold('Sobre o Sistema:', const EdgeInsets.all(20)),
             Image.asset('images/top_pagina_sobre.png', fit: BoxFit.fitHeight),
-            myPadding(texto1, const EdgeInsets.all(50)),
+            myPadding(texto1, const EdgeInsets.only(left: 50, top:50, right: 50, bottom: 10 )),
             SizedBox(
               height: 300,
               child:Image.asset('images/meio_pagina_sobre.png', fit: BoxFit.fitHeight)
