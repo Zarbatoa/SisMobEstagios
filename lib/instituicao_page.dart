@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:sistema_mobile_estagios/instituicao_cadastro_page.dart';
 import 'package:sistema_mobile_estagios/utilidades.dart';
 import 'package:sistema_mobile_estagios/constantes.dart' as constantes;
 
@@ -78,7 +79,14 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
             ),
             myPadding('As instituições de ensino são importantes entes sociais (ou instituições sociais) que atuam na promoção da educação de crianças, jovens e adultos.', const EdgeInsets.all(25)),
             ElevatedButton(
-              onPressed: (){}, 
+              onPressed: (){
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const InstituicaoCadastroPage())
+                    );
+                });
+              }, 
               child: const Text('CADASTRAR'),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color?>(constantes.darkBlueTheme),
